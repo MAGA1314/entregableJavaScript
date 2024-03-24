@@ -3,21 +3,26 @@
 // Parámetros: array (Array) - Un array de números
 // Devuelve: Number - La suma de todos los elementos del array
 const sumArray = () => {
-    
-  };
+    return array.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+};
+  
   
   // Función filterEvenNumbers: Filtrar números pares de un array
   // Parámetros: array (Array) - Un array de números
   // Devuelve: Array - Un nuevo array con solo los números pares del array original
   const filterEvenNumbers = () => {
-    
+    return array.filter(number => number % 2 === 0);
   };
   
   // Función findMaxNumber: Encontrar el mayor número en un array
   // Parámetros: array (Array) - Un array de números
   // Devuelve: Number - El mayor número en el array
   const findMaxNumber = () => {
-    
+    if (array.length === 0) {
+        return undefined;
+    }
+    // Utiliza Math.max con el operador de propagación para encontrar el máximo.
+    return Math.max(...array);
   };
   
   // Función toUpperCaseStrings: Convertir un array de strings a mayúsculas
@@ -131,7 +136,16 @@ const calcularPromedioPuntajes = (peliculas) => {
 // - Un array de objetos que representan películas lanzadas en el año especificado.
 const filtrarPorAño = (peliculas, año) => {
     // Filtrar las películas por año de lanzamiento.
-    
+    // Si no se proporciona un año, retorna un array vacío.
+    if (año === undefined) {
+        return [];
+    }
+
+    // Si el año es un string, intenta convertirlo a un número.
+    const añoNumerico = Number(año);
+
+    // Filtrar las películas por año de lanzamiento.
+    return peliculas.filter(pelicula => pelicula.año === añoNumerico);
 };
 
 // Función para calcular el promedio de duración de las películas por género.
@@ -141,8 +155,24 @@ const filtrarPorAño = (peliculas, año) => {
 // Retorna:
 // - Un número que representa el promedio de duración de las películas del género especificado.
 const calcularPromedioDuracionPorGenero = (peliculas, genero) => {
-    // Filtrar las películas por género.
-    
+    // Convertir el género proporcionado a minúsculas.
+    const generoLowerCase = genero.toLowerCase();
+
+    // Filtrar las películas por género, convirtiendo el género de cada película a minúsculas.
+    const peliculasFiltradas = peliculas.filter(pelicula => pelicula.genero.toLowerCase() === generoLowerCase);
+
+    // Verificar si hay películas filtradas.
+    if (peliculasFiltradas.length === 0) {
+        return 0; // Retorna 0 si no hay películas del género especificado.
+    }
+
+    // Calcular la suma de las duraciones.
+    const sumaDuraciones = peliculasFiltradas.reduce((suma, pelicula) => suma + pelicula.duracion, 0);
+
+    // Calcular el promedio.
+    const promedio = sumaDuraciones / peliculasFiltradas.length;
+
+    return promedio;
 };
 
 
