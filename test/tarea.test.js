@@ -600,7 +600,7 @@ describe('Bicicleta', () => {
         expect(bicicleta.tipo).toBe('Montaña');
         expect(bicicleta.numMarchas).toBe(21);
         expect(bicicleta.material).toBe('Aluminio');
-        expect(bicicleta.suspencion).toBe('Doble');
+        expect(bicicleta.suspension).toBe('Doble');
         expect(bicicleta.frenos).toBe('Disco');
         expect(bicicleta.tipoManubrio).toBe('Recto');
     });
